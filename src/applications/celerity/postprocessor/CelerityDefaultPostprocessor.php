@@ -18,15 +18,18 @@ final class CelerityDefaultPostprocessor
   }
 
   public function buildVariables() {
+    $font_family = "'IBM Plex Sans', 'Segoe UI', 'Segoe UI Emoji', ".
+      "'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Color Emoji', ".
+      "'IBM Plex Sans KR', 'Helvetica Neue', Helvetica, Arial, sans-serif";
+
     return array(
       // Fonts
-      'basefont' => "13px 'Segoe UI', 'Segoe UI Emoji', ".
-        "'Segoe UI Symbol', 'Lato', 'Helvetica Neue', ".
-        "Helvetica, Arial, sans-serif",
+      'basefont' => '13px '.$font_family,
 
-      'fontfamily' => "'Segoe UI', 'Segoe UI Emoji', ".
-        "'Segoe UI Symbol', 'Lato', 'Helvetica Neue', ".
-        "Helvetica, Arial, sans-serif",
+      'fontfamily' => $font_family,
+
+      'monospacedfontfamily' => "'IBM Plex Mono', 'Nanum Gothic Coding', ".
+        "'Menlo', 'Consolas', 'Monaco', monospace",
 
       // Drop Shadow
       'dropshadow' => '0 2px 12px rgba(0, 0, 0, .20)',

@@ -1,0 +1,179 @@
+/**
+ * @provides font-plex
+ */
+
+/* Serve these fonts through Celerity on the installation's static resource
+   domain. The Content-Security-Policy uses default-src for fonts. */
+
+/* IBM Plex Sans precedes IBM Plex Sans KR in the default stack: it is smaller
+   and has genuine Latin italics. Korean faces are restricted to the declared
+   Hangul, CJK punctuation and fullwidth ranges. */
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url(/rsrc/externals/font/plex-sans/IBMPlexSans-Regular.woff2)
+    format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url(/rsrc/externals/font/plex-sans/IBMPlexSans-Italic.woff2)
+    format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url(/rsrc/externals/font/plex-sans/IBMPlexSans-Bold.woff2)
+    format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url(/rsrc/externals/font/plex-sans/IBMPlexSans-BoldItalic.woff2)
+    format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans KR';
+  src: url(/rsrc/externals/font/plex-sans-kr/IBMPlexSansKR-Regular.woff2)
+    format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3,
+    U+D7B0-D7FF, U+3000-303F, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans KR';
+  src: url(/rsrc/externals/font/plex-sans-kr/IBMPlexSansKR-Bold.woff2)
+    format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3,
+    U+D7B0-D7FF, U+3000-303F, U+FF00-FFEF;
+}
+
+/* Reuse the upright URLs for italic faces to suppress synthesized Hangul
+   obliques. The browser caches each file once; Latin uses Plex Sans italics. */
+
+@font-face {
+  font-family: 'IBM Plex Sans KR';
+  src: url(/rsrc/externals/font/plex-sans-kr/IBMPlexSansKR-Regular.woff2)
+    format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3,
+    U+D7B0-D7FF, U+3000-303F, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans KR';
+  src: url(/rsrc/externals/font/plex-sans-kr/IBMPlexSansKR-Bold.woff2)
+    format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3,
+    U+D7B0-D7FF, U+3000-303F, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url(/rsrc/externals/font/plex-mono/IBMPlexMono-Regular.woff2)
+    format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url(/rsrc/externals/font/plex-mono/IBMPlexMono-Italic.woff2)
+    format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url(/rsrc/externals/font/plex-mono/IBMPlexMono-Bold.woff2)
+    format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url(/rsrc/externals/font/plex-mono/IBMPlexMono-BoldItalic.woff2)
+    format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Only Nanum's Korean subset is bundled. IBM Plex Mono supplies Latin, and
+   Nanum Gothic Coding keeps Hangul monospaced instead of using Sans KR. */
+
+@font-face {
+  font-family: 'Nanum Gothic Coding';
+  src: url(/rsrc/externals/font/nanum-gothic-coding/korean-400-normal.woff2)
+    format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3,
+    U+D7B0-D7FF, U+3000-303F, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: 'Nanum Gothic Coding';
+  src: url(/rsrc/externals/font/nanum-gothic-coding/korean-700-normal.woff2)
+    format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3,
+    U+D7B0-D7FF, U+3000-303F, U+FF00-FFEF;
+}
+
+/* Reuse the upright URLs for italic faces to suppress synthesized Hangul
+   obliques. The browser caches each file once; Latin uses Plex Mono italics. */
+
+@font-face {
+  font-family: 'Nanum Gothic Coding';
+  src: url(/rsrc/externals/font/nanum-gothic-coding/korean-400-normal.woff2)
+    format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3,
+    U+D7B0-D7FF, U+3000-303F, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: 'Nanum Gothic Coding';
+  src: url(/rsrc/externals/font/nanum-gothic-coding/korean-700-normal.woff2)
+    format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3,
+    U+D7B0-D7FF, U+3000-303F, U+FF00-FFEF;
+}

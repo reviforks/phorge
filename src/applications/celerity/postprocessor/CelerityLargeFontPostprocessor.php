@@ -12,11 +12,11 @@ final class CelerityLargeFontPostprocessor
   }
 
   public function buildVariables() {
+    $default_variables = $this->getDefault()->getVariables();
+
     return array(
 
-      'basefont' => "14px 'Segoe UI', 'Segoe UI Web Regular', ".
-        "'Segoe UI Symbol', 'Lato', 'Helvetica Neue', Helvetica, ".
-        "Arial, sans-serif",
+      'basefont' => '14px '.$default_variables['fontfamily'],
 
       // Font Sizes
       'biggestfontsize' => '16px',

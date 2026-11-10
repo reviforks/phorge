@@ -234,7 +234,7 @@ final class PhabricatorStandardPageView extends PhabricatorBarePageView
     require_celerity_resource('phui-form-css');
     require_celerity_resource('phabricator-standard-page-view');
     require_celerity_resource('conpherence-durable-column-view');
-    require_celerity_resource('font-lato');
+    require_celerity_resource('font-plex');
 
     Javelin::initBehavior('workflow', array());
 
@@ -390,6 +390,21 @@ final class PhabricatorStandardPageView extends PhabricatorBarePageView
 
     $response = CelerityAPI::getStaticResourceResponse();
 
+    // CSS font URLs use resource-map paths, without a theme or mtime prefix.
+    // Resolve the same path on the CDN so the stylesheet reuses the preload.
+    $map = CelerityResourceMap::getNamedInstance('phabricator');
+    $font_path = $map->getURIForName(
+      'rsrc/externals/font/plex-sans/IBMPlexSans-Regular.woff2');
+    $font_preload = phutil_tag(
+      'link',
+      array(
+        'rel' => 'preload',
+        'as' => 'font',
+        'type' => 'font/woff2',
+        'crossorigin' => 'anonymous',
+        'href' => PhabricatorEnv::getCDNURI($font_path),
+      ));
+
     $font_css = null;
     if (!empty($monospaced)) {
       // We can't print this normally because escaping quotation marks will
@@ -398,18 +413,35 @@ final class PhabricatorStandardPageView extends PhabricatorBarePageView
         PhabricatorMonospacedFontSetting::filterMonospacedCSSRule(
           $monospaced));
 
+      // Nested code and special-character markers must inherit the selected
+      // family, while retaining their own size, weight and emphasis. Leave
+      // comments and controls inside monospaced containers in the UI font.
+      // Exclude remarkup descendants from the container rule so comment keys
+      // keep the default monospace family; remarkup code has its own rules.
       $font_css = hsprintf(
         '<style type="text/css">'.
         '.PhabricatorMonospaced, '.
         '.phabricator-remarkup .remarkup-code-block .remarkup-code, '.
         '.phabricator-remarkup .remarkup-monospaced '.
         '{ font: %s !important; } '.
+        '.PhabricatorMonospaced '.
+          ':is(code, kbd, pre, samp, tt, .invisible-special)'.
+          ':not(.phabricator-remarkup *), '.
+        '.phabricator-remarkup .remarkup-code-block .remarkup-code '.
+          ':is(code, kbd, pre, samp, tt), '.
+        '.phabricator-remarkup .remarkup-code-block .remarkup-code '.
+          '.invisible-special, '.
+        '.phabricator-remarkup .remarkup-monospaced '.
+          ':is(code, kbd, pre, samp, tt), '.
+        '.phabricator-remarkup .remarkup-monospaced .invisible-special '.
+        '{ font-family: inherit !important; } '.
         '</style>',
         $monospaced);
     }
 
     return hsprintf(
-      '%s%s%s%s',
+      '%s%s%s%s%s',
+      $font_preload,
       parent::getHead(),
       $font_css,
       phutil_implode_html('', $this->headItems),

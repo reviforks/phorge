@@ -70,6 +70,10 @@ textarea {
   font: inherit;
 }
 
+code, kbd, pre, samp, tt {
+  font-family: {$monospacedfontfamily};
+}
+
 table {
   font-size: inherit;
 }

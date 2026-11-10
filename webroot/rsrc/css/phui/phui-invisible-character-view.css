@@ -3,7 +3,7 @@
  */
 
 .invisible-special {
-  font-family: monospace;
+  font-family: {$monospacedfontfamily};
   color: {$blacktext};
   background: rgba({$alphablue},0.1);
   padding: 1px 4px;

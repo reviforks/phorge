@@ -82,13 +82,13 @@
 
 .phui-document-view .PhabricatorMonospaced,
 .phui-document-view .phabricator-remarkup .remarkup-code-block .remarkup-code {
-  font: 12px/18px "Menlo", "Consolas", "Monaco", monospace;
+  font: 12px/18px {$monospacedfontfamily};
 }
 
 .platform-windows .phui-document-view .PhabricatorMonospaced,
 .platform-windows .phui-document-view .phabricator-remarkup .remarkup-code-block
   .remarkup-code {
-  font: 13px/18px "Menlo", "Consolas", "Monaco", monospace;
+  font: 13px/18px {$monospacedfontfamily};
 }
 
 .phui-document-version-navigation {

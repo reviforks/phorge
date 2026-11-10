@@ -13,12 +13,12 @@
 
 .PhabricatorMonospaced,
 .phabricator-remarkup .remarkup-code-block .remarkup-code {
-  font: 11px/15px "Menlo", "Consolas", "Monaco", monospace;
+  font: 11px/15px {$monospacedfontfamily};
 }
 
 .platform-windows .PhabricatorMonospaced,
 .platform-windows .phabricator-remarkup .remarkup-code-block .remarkup-code {
-  font: 12px/15px "Menlo", "Consolas", "Monaco", monospace;
+  font: 12px/15px {$monospacedfontfamily};
 }
 
 .phabricator-remarkup .remarkup-code-block {
@@ -82,6 +82,8 @@
 }
 
 .phabricator-remarkup tt.remarkup-monospaced {
+  font-family: {$monospacedfontfamily};
+  font-size: 0.85em;
   color: {$blacktext};
   background: rgba({$alphablue},0.1);
   padding: 1px 4px;
@@ -202,7 +204,8 @@
 .phabricator-remarkup blockquote {
   border-left: 3px solid {$sh-blueborder};
   color: {$darkbluetext};
-  font-style:  italic;
+  /* Quotation is marked by the border and background, not a slanted face. */
+  font-style: normal;
   margin: 4px 0 12px 0;
   padding: 8px 12px;
   background-color: {$lightbluebackground};
@@ -216,21 +219,8 @@
   background-color: rgba(175,175,175, .1);
 }
 
-.phabricator-remarkup blockquote em {
-  /* In blockquote bodies, default text is italic so emphasized text should
-     be normal. */
-  font-style: normal;
-}
-
 .phabricator-remarkup blockquote div.remarkup-reply-head {
-  font-style: normal;
   padding-bottom: 4px;
-}
-
-.phabricator-remarkup blockquote div.remarkup-reply-head em {
-  /* In blockquote headers, default text is normal so emphasized text should
-     be italic. See T10686. */
-  font-style: italic;
 }
 
 .phabricator-remarkup blockquote div.remarkup-reply-head

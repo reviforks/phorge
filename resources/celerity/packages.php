@@ -142,7 +142,7 @@ return array(
     'phui-list-view-css',
 
     'font-fontawesome',
-    'font-lato',
+    'font-plex',
     'phui-font-icon-base-css',
     'phui-fontkit-css',
     'phui-box-css',

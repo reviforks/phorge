@@ -3,7 +3,7 @@
  */
 
 .diviner-monospace {
-  font-family: monospace;
+  font-family: {$monospacedfontfamily};
   font-size: 13px;
 }
 

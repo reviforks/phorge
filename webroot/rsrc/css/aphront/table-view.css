@@ -181,12 +181,12 @@ th.aphront-table-view-sortable-selected {
 }
 
 .aphront-table-view td.mono {
-  font-family: "Monaco", monospace;
+  font-family: {$monospacedfontfamily};
   font-size: {$smallestfontsize};
 }
 
 .aphront-table-view td.n {
-  font-family: "Monaco", monospace;
+  font-family: {$monospacedfontfamily};
   font-size: {$smallestfontsize};
   text-align: right;
 }
@@ -200,7 +200,7 @@ th.aphront-table-view-sortable-selected {
 }
 
 .aphront-table-view td.prewrap {
-  font-family: "Monaco", monospace;
+  font-family: {$monospacedfontfamily};
   font-size: {$smallestfontsize};
   white-space: pre-wrap;
 }
@@ -291,7 +291,7 @@ span.single-display-line-content {
 }
 
 .aphront-table-view td.threads {
-  font-family: monospace;
+  font-family: {$monospacedfontfamily};
   white-space: pre;
   padding: 0 0 0 8px;
 }

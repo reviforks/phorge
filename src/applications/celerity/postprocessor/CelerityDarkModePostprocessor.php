@@ -12,17 +12,8 @@ final class CelerityDarkModePostprocessor
   }
 
   public function buildVariables() {
+    // Inherit font stacks from the default postprocessor.
     return array(
-
-      // Fonts
-      'basefont' => "13px 'Segoe UI', 'Segoe UI Emoji', ".
-        "'Segoe UI Symbol', 'Lato', 'Helvetica Neue', ".
-        "Helvetica, Arial, sans-serif",
-
-      'fontfamily' => "'Segoe UI', 'Segoe UI Emoji', ".
-        "'Segoe UI Symbol', 'Lato', 'Helvetica Neue', ".
-        "Helvetica, Arial, sans-serif",
-
       // Drop Shadow
       'dropshadow' => '0 2px 12px rgba(0, 0, 0, .20)',
 
