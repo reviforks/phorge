@@ -132,7 +132,8 @@ final class PhabricatorFilesApplication extends PhabricatorApplication {
         '(?:@(?P<instance>[^/]+)/)?'.
         '(?P<transform>[^/]+)/'.
         '(?P<phid>[^/]+)/'.
-        '(?P<key>[^/]+)/'
+        '(?P<key>[^/]+)/'.
+        '(?:[^/]+)?'
         => 'PhabricatorFileTransformController',
     );
   }

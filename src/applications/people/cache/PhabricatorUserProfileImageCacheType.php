@@ -101,6 +101,7 @@ final class PhabricatorUserProfileImageCacheType
 
   private function getCacheVersion(PhabricatorUser $user) {
     $parts = array(
+      'uri-ext-1',
       PhabricatorEnv::getCDNURI('/'),
       PhabricatorEnv::getEnvConfig('cluster.instance'),
       $user->getProfileImagePHID(),

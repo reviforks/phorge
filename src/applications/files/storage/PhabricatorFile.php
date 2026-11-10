@@ -878,8 +878,7 @@ final class PhabricatorFile extends PhabricatorFileDAO
           $request_kind));
     }
 
-    $name = self::normalizeFileName($this->getName());
-    $name = phutil_escape_uri($name);
+    $name = $this->getURIFileName();
 
     $parts = array();
     $parts[] = 'file';
@@ -956,11 +955,49 @@ final class PhabricatorFile extends PhabricatorFileDAO
     $parts[] = $transform;
     $parts[] = $this->getPHID();
     $parts[] = $this->getSecretKey();
+    // Image transforms use a PNG placeholder if the source can not be used.
+    $parts[] = $this->getURIFileName('png');
 
     $path = implode('/', $parts);
-    $path = $path.'/';
 
     return PhabricatorEnv::getCDNURI($path);
+  }
+
+  private function getURIFileName($default_extension = null) {
+    $name = self::normalizeFileName($this->getName());
+
+    $extensions = array(
+      'image/png' => 'png',
+      'image/jpeg' => 'jpg',
+      'image/jpg' => 'jpg',
+      'image/gif' => 'gif',
+      'image/webp' => 'webp',
+      'image/x-ico' => 'ico',
+      'image/x-icon' => 'ico',
+      'image/vnd.microsoft.icon' => 'ico',
+      'image/svg+xml' => 'svg',
+      'image/bmp' => 'bmp',
+      'image/x-ms-bmp' => 'bmp',
+      'image/avif' => 'avif',
+      'image/tiff' => 'tiff',
+    );
+    $extension = idx($extensions, $this->getMimeType(), $default_extension);
+
+    // Cloudflare's default cache eligibility depends on the URL extension,
+    // not the response MIME type. Preserve any already-cacheable extension,
+    // including extensions which differ from the MIME type.
+    // https://developers.cloudflare.com/cache/concepts/default-cache-behavior/
+    $cacheable_pattern =
+      '/\.(?:7z|apk|avi|avif|bin|bmp|bz2|class|css|csv|dmg|doc|docx|'.
+      'ejs|eot|eps|exe|flac|gif|gz|ico|iso|jar|jpeg|jpg|js|mid|midi|'.
+      'mkv|mp3|mp4|ogg|otf|pdf|pict|pls|png|ppt|pptx|ps|rar|svg|svgz|'.
+      'swf|tar|tif|tiff|ttf|webm|webp|woff|woff2|xls|xlsx|zip|zst)\z/i';
+
+    if ($extension !== null && !preg_match($cacheable_pattern, $name)) {
+      $name .= '.'.$extension;
+    }
+
+    return phutil_escape_uri($name);
   }
 
   /**
